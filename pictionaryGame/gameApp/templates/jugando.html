@@ -1,4 +1,4 @@
-{% load static %}
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,27 +19,101 @@
       crossorigin="anonymous"
     ></script>
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
 
 </head>
 <body>
 <section class="container">
     <h2 id="titleCat">{{categoria.nombre}}</h2>
-
     <h1 id="palabraRandom">
         {{ palabraRandom}}
     </h1>
     <div class="botones">
-        <div >
-            <a type="button" class="btn btn-dark"  href='/game/{{categoria.id}}' onClick="changeWord">SIGUIENTE</a>
+        <div id="nuevaPalabra" >
+<!--            <button class="btn btn-dark" id =#nuevaPalabra onclick="nuevaPalabra({{listado}})"> SIGUIENTE</button> <br>  <br>-->
+            <button class="btn btn-dark" id='palabraCorrecta' onclick="nuevaPalabra({{listado}}); sumaPunto()"> ACIERTO</button>
+            <button  class="btn btn-dark" id="palabraIncorrecta" onclick="nuevaPalabra({{listado}}); restaPunto()"> PASAR</button>
+            <div class="botones">
+            <button class="btn btn-dark" id ='palabraRepetida' onclick="nuevaPalabra({{listado}})"> REPETIDA</button>
+                </div>
         </div>
+        <div>
+            <p id="puntaje"> Puntaje actual: <span id="puntajeAcum"> </span></p>
+
+        </div>
+
         <div >
-            <a type="button" class="btn btn-dark" href="/game">VOLVER A CATEGORIAS</a>
+            <a type="button" class="btn btn-dark" href="/game" >VOLVER A CATEGORIAS</a>
         </div>
     </div>
 
-    <div class="timer"> </div>
-    {{listado}}
+    <div class="establecerTiempo">
+            <h1>Configuracion de tiempo </h1>
+
+        <form method="get">
+             {% csrf_token %}
+            <label for="timeRequired">Ingrese tiempo deseado de juego en segundos: </label>
+            <input id="timeRequired" type="number" value="click" name="seconds-timer" placeholder="60" max="120">
+            <input type="submit" name ='botonOk' value="OK">
+        </form>
+
+        <div class="timer">
+            <div id="countdown">
+                <button class="btn btn-dark" onclick="setTimer({{segundos}})"> Iniciar tiempo</button>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript">
+        function nuevaPalabra(listado) {
+           var palabra = listado[Math.floor(Math.random() * listado.length)];
+          document.getElementById('palabraRandom').innerHTML = palabra;
+            }
+        var puntaje = 0;
+        function sumaPunto() {
+            puntaje +=1
+             document.getElementById('puntajeAcum').innerHTML = puntaje;
+        }
+        function restaPunto() {
+            puntaje -=1
+             document.getElementById('puntajeAcum').innerHTML = puntaje;
+        }
+
+    </script>
+<script>
+function setTimer(timeSeconds){
+    var timeleft = timeSeconds;
+    var downloadTimer = setInterval(function(){
+      if(timeleft <= 0){
+        clearInterval(downloadTimer);
+
+        document.getElementById("countdown").innerHTML = "Fin del tiempo";
+
+      } else {
+        document.getElementById("countdown").innerHTML = timeleft + " segundos restantes";
+      }
+      timeleft -= 1;
+    }, 1000);}
+</script>
+
 
 </section>
+
 </body>
+
 </html>

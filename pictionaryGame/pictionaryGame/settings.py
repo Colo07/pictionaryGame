@@ -123,10 +123,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 
-STATICFILES_DIRS= [
+STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
@@ -135,14 +135,3 @@ STATICFILES_DIRS= [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-
-# 1. chino confuso
-CRONTAB_COMMAND_PREFIX = 'LANG_ALL=zh_cn.UTF-8'
-# 2. Lo que quiere hacer después de ejecutar cada trabajo: traducción literal
-CRONTAB_COMMAND_SUFFIX = '2>&1'
-# 3. Agregar tareas de tiempo (la declaración de salida en la función se emite en el archivo .log)
-CRONJOBS = (
-    ('00 00 * * *', 'app.cron.do_something',
-     '>> %s/log.log' % os.path.join(BASE_DIR, 'logs')),
-)

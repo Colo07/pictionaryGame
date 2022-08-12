@@ -3,6 +3,7 @@ body{
 }
 
 #titleCat{
+    margin-top:50px;
     text-align: center;
 }
 
@@ -11,9 +12,7 @@ body{
     text-align: center;
 }
 
-.container{
-   
-}
+
 
 .botones{
     display:grid;
@@ -21,67 +20,57 @@ body{
     grid-template-rows: 1fr 1fr;
     justify-items: center;
     margin:15px;
-
-    height: 300px;
+    height: 150px;
 }
 
+#palabraIncorrecta{
+    background-color: #cb3234;
+    border-color: #cb3234;
+    margin:10px
 
+}
+
+#palabraCorrecta{
+ background-color: #008f39;
+ border-color: #008f39;
+ margin:10px
+}
+
+#palabraRepetida{
+    display:flex;
+    align-items:center;
+    margin-top:40px
+}
+
+#puntaje,#puntajeAcum{
+font-size:35px
+}
+
+#timeRest{
+ min-height: 100vh;
+color:black;
+}
 
 .timer {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  max-height: 100vh;
   color: white;
   font-family: "Roboto", "Segoe UI", BlinkMacSystemFont, system-ui, -apple-system;
-  font-size: 30vmin;
+  font-size: 40px;
   text-align: center;
-  background: radial-gradient(#f12711, #f5af19);
+
 }
 
-.timer::before,
-.timer::after {
-  content: "";
-  width: 1ch;
-  animation: countdown 100s step-end infinite;
-}
+.establecerTiempo{
 
-.timer::after {
-  animation-duration: 10s;
-}
+  display: grid;
+  margin-top: 250px;
 
-@keyframes countdown {
-  0% {
-    content: "9";
-  }
-  10% {
-    content: "8";
-  }
-  20% {
-    content: "7";
-  }
-  30% {
-    content: "6";
-  }
-  40% {
-    content: "5";
-  }
-  50% {
-    content: "4";
-  }
-  60% {
-    content: "3";
-  }
-  70% {
-    content: "2";
-  }
-  80% {
-    content: "1";
-  }
-  90% {
-    content: "0";
-  }
-  100% {
-    content: "0";
-  }
+  color: white;
+  font-family: "Roboto", "Segoe UI", BlinkMacSystemFont, system-ui, -apple-system;
+  font-size: 40px;
+  text-align: center;
+
 }
