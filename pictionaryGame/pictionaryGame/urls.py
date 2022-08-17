@@ -16,13 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from gameApp.views import homePage,game,gaming,settings
+from gameApp.views import homePage,game,gaming
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', homePage),
-    path('settings',settings),
     path('game/',game),
     path('game/<int:id>',gaming),
     
